@@ -1,6 +1,9 @@
 ﻿using eHomeschool.Data.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace eHomeschool.Models
 {
@@ -23,5 +26,23 @@ namespace eHomeschool.Models
 
         public DateTime EndDate { get; set; }
 
+
+        //Relationships
+        public List<Lecture_Course> Lectures_Courses { get; set; }
+
+        //Educational Stage
+        public int EducationalStageId { get; set; }
+        [ForeignKey("EducationalStageId")]
+        public EducationalStage EducationalStage { get; set; }
+
+        //Syllabus
+        public int SyllabusId { get; set; }
+        [ForeignKey("SyllabusId")]
+        public Syllabus Syllabus { get; set; }
+
+        //Instructor information
+        public int InstructorInformationId { get; set; }
+        [ForeignKey("InstructorInformationId")]
+        public InstructorInformation InstructorInformation { get; set; }
     }
 }

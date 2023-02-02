@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace eHomeschool.Models
 {
@@ -10,6 +11,9 @@ namespace eHomeschool.Models
         public string Outcome { get; set; }
         public string AssessmentMethods { get; set; }
         public string LearningMethods { get; set; }
+
+        //Relationships
+        public List<Course> Courses { get; set; }
 
     }
 }

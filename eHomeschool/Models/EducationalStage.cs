@@ -1,4 +1,5 @@
 ﻿using eHomeschool.Data.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace eHomeschool.Models
@@ -12,5 +13,8 @@ namespace eHomeschool.Models
         public SemesterCategory Semester { get; set; }
         public StageNameCategory StageName { get; set; }
         public string Description { get; set; }
+
+        //Relationships
+        public List<Course> Courses { get; set; }
     }
 }
