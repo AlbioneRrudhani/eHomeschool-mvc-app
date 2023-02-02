@@ -9,7 +9,5 @@ namespace eHomeschool.Data.Enums
             FirstPeriod,
             [Description("Second Period")]
             SecondPeriod,
-            [Description("Third Period")]
-            ThirdPeriod,
     }
 }
