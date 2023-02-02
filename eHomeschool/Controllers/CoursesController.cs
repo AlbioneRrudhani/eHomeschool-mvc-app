@@ -1,6 +1,7 @@
 ﻿using eHomeschool.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eHomeschool.Controllers
@@ -15,8 +16,8 @@ namespace eHomeschool.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allCourses = await _context.Courses.ToListAsync();
-            return View();
+            var allCourses = await _context.Courses.Include(n => n.EducationalStage).OrderBy(n => n.Title) .ToListAsync();
+            return View(allCourses);
         }
     }
 }
