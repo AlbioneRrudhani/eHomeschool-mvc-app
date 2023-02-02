@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Syllabus>
+
+@{
+    ViewData["Title"] = "List of syllabi";
+}
+
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Objective</th>
+                    <th>Outcome</th>
+                    <th>AssessmentMethods</th>
+                    <th>LearningMethods</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Objective</td>
+                        <td>@item.Outcome</td>
+                        <td>@item.AssessmentMethods</td>
+                        <td>@item.LearningMethods</td>
+                        <td class="d-flex">
+                            <a class="btn btn-outline-primary mr-2" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="fas fa-edit"></i>Edit
+                            </a>
+                            <a class="btn btn-outline-info mr-2" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="fas fa-info-circle"></i>Details
+                            </a>
+                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <a asp-controller="Lectures" asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add New
+        </a>
+    </div>

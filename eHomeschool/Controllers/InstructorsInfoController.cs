@@ -16,7 +16,7 @@ namespace eHomeschool.Controllers
         public async Task<IActionResult> Index()
         {
             var allInstructorsInfo = await _context.InstructorsInformation.ToListAsync();
-            return View();
+            return View(allInstructorsInfo);
         }
     }
 }
