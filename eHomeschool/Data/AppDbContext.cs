@@ -23,6 +23,7 @@ namespace eHomeschool.Data
             base.OnModelCreating(modelBuilder);
         }
 
+        //Course related tables
 
         public DbSet<Lecture> Lectures { get; set; }
         public DbSet<Course> Courses { get; set; }
@@ -30,6 +31,11 @@ namespace eHomeschool.Data
         public DbSet<EducationalStage> EducationalStages { get; set; }
         public DbSet<InstructorInformation> InstructorsInformation { get; set; }
         public DbSet<Syllabus> Syllabi { get; set; }
+
+
+        //Order related tables
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
     }
 }
