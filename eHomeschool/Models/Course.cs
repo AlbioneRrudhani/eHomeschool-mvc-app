@@ -1,4 +1,5 @@
-﻿using eHomeschool.Data.Enums;
+﻿using eHomeschool.Data.Base;
+using eHomeschool.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.Xml.Linq;
 
 namespace eHomeschool.Models
 {
-    public class Course
+    public class Course : IEntityBase
     {
         [Key]
         public int Id { get; set; }

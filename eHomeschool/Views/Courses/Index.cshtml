@@ -37,7 +37,9 @@
                         </p>
                     </div>
                     <div class="card-footer bg-light d-flex justify-content-between p-3">
-                        <a href="#" class="btn btn-outline-primary">Show Details</a>
+                        <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">
+                            Show Details
+                        </a>
                         <a href="#" class="btn btn-success">Add to Cart</a>
                     </div>
                 </div>
@@ -46,3 +48,4 @@
     </div>
 </div>
 
+@await Html.PartialAsync("_CreateItem", "Courses") 

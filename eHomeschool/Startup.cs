@@ -45,6 +45,7 @@ namespace eHomeschool
             services.AddScoped<IEducationalStagesService, EducationalStagesSevice>();
             services.AddScoped<IInstructorInfoService, InstructorInfoService>();
             services.AddScoped<ISyllabiService, SyllabiService>();
+            services.AddScoped<ICourseService, CourseService>();
 
 
             services.AddControllersWithViews();

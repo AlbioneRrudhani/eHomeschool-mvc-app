@@ -1,0 +1,88 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "Course details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Title
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.PictureUrl" width="100%" alt="@Model.Title">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text">@Model.Short_description</p>
+
+
+
+
+                        <p class="card-text"><b>Language: </b>@Model.Language  </p>
+
+                        <p class="card-text">
+                            <b>Category: </b>
+
+                            @Model.EducationalStage.Grade / @Model.EducationalStage.Semester /  <a asp-controller="EducationalStages" asp-action="Details" asp-route-id="@Model.EducationalStageId">@Model.EducationalStage.StageName</a>
+                            </p>
+
+
+                        <p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yy") / <b>End Date: </b>@Model.EndDate.ToString("dd MMM yy") </p>
+
+                         <p class="card-text">
+                            <b>Syllabi: </b>
+
+                             <a asp-controller="Syllabi" asp-action="Details" asp-route-id="@Model.SyllabusId">Syllabus</a>
+                            </p>
+
+                            <hr />
+
+                        <p class="card-text">
+                        @foreach (var lecture in Model.Lectures_Courses)
+                        {
+                            <div class="column text-left">
+                                
+                                <a asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.LectureId">@lecture.Lecture.Name</a>
+                            </div>
+                        }
+                        </p>
+
+                        <hr />
+                          <p class="card-text">
+                            <b>Created by: </b>
+
+                             <a asp-controller="InstructorsInfo" asp-action="Details" asp-route-id="@Model.InstructorInformationId"> @Model.InstructorInformation.FullName</a>
+                            </p>
+
+
+
+                    </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                Back to List
+                            </a>
+                            <a class="btn btn-success text-white  @((DateTime.Now > Model.EndDate) ? "disabled" : "")"
+                               asp-controller="Orders"
+                               asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

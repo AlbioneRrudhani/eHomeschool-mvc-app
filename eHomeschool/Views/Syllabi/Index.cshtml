@@ -41,8 +41,4 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <a asp-controller="Syllabi" asp-action="Create" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Add New
-        </a>
-    </div>
+    @await Html.PartialAsync("_CreateItem", "Syllabi")
