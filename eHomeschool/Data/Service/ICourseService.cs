@@ -10,5 +10,8 @@ namespace eHomeschool.Data.Service
     {
         Task<Course> GetCourseByIdAsync(int id);
         Task<NewCourseDropDownVM> GetNewCourseDropDownsValue();
+        Task AddNewCourseAsync(NewCourseVM data);
+
+        Task UpdateCourseAsync(NewCourseVM data);
     }
 }

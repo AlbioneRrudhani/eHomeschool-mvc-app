@@ -10,6 +10,8 @@ namespace eHomeschool.Data.ViewModels
 {
     public class NewCourseVM
     {
+        public int Id { get; set; }
+
         [Display(Name = "Course Title")]
         [Required(ErrorMessage = "Title is required")]
         public string Title { get; set; }

@@ -1,5 +1,6 @@
 ﻿using eHomeschool.Data;
 using eHomeschool.Data.Service;
+using eHomeschool.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -45,6 +46,78 @@ namespace eHomeschool.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(NewCourseVM course)
+        {
+            if (!ModelState.IsValid)
+            {
+                var courseDropdownsData = await _service.GetNewCourseDropDownsValue();
+
+                ViewBag.EducationalStages = new SelectList(courseDropdownsData.EducationalStages, "Id", "Grade");
+                ViewBag.Syllabi = new SelectList(courseDropdownsData.Syllabi, "Id", "Objective", "Outcome", "AssessmentMethods");
+                ViewBag.InstructorsInfo = new SelectList(courseDropdownsData.InstructorsInformation, "Id", "FullName");
+                ViewBag.Lectures = new SelectList(courseDropdownsData.Lectures, "Id", "Name");
+
+                return View(course);
+            }
+            await _service.AddNewCourseAsync(course);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var courseDetails = await _service.GetCourseByIdAsync(id);
+            if (courseDetails == null) return View("NotFound");
+
+            var response = new NewCourseVM()
+            {
+                Id = courseDetails.Id,
+                Title = courseDetails.Title,
+                Short_description = courseDetails.Short_description,
+                Price = courseDetails.Price,
+                StartDate = courseDetails.StartDate,
+                EndDate = courseDetails.EndDate,
+                PictureUrl = courseDetails.PictureUrl,
+                Language = courseDetails.Language,
+                EducationalStageId = courseDetails.EducationalStageId,
+                SyllabusId = courseDetails.SyllabusId,
+                InstructorInformationId = courseDetails.InstructorInformationId,
+                LectureIds = courseDetails.Lectures_Courses.Select(n => n.LectureId).ToList(),
+            };
+
+            var courseDropdownsData = await _service.GetNewCourseDropDownsValue();
+
+            ViewBag.EducationalStages = new SelectList(courseDropdownsData.EducationalStages, "Id", "Grade");
+            ViewBag.Syllabi = new SelectList(courseDropdownsData.Syllabi, "Id", "Objective", "Outcome", "AssessmentMethods");
+            ViewBag.InstructorsInfo = new SelectList(courseDropdownsData.InstructorsInformation, "Id", "FullName");
+            ViewBag.Lectures = new SelectList(courseDropdownsData.Lectures, "Id", "Name");
+
+            return View(response);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, NewCourseVM course)
+        {
+            if (id != course.Id) return View("NotFound");
+
+            if (!ModelState.IsValid)
+            {
+                var courseDropdownsData = await _service.GetNewCourseDropDownsValue();
+
+                ViewBag.EducationalStages = new SelectList(courseDropdownsData.EducationalStages, "Id", "Grade");
+                ViewBag.Syllabi = new SelectList(courseDropdownsData.Syllabi, "Id", "Objective", "Outcome", "AssessmentMethods");
+                ViewBag.InstructorsInfo = new SelectList(courseDropdownsData.InstructorsInformation, "Id", "FullName");
+                ViewBag.Lectures = new SelectList(courseDropdownsData.Lectures, "Id", "Name"); ;
+
+                return View(course);
+            }
+
+            await _service.UpdateCourseAsync(course);
+            return RedirectToAction(nameof(Index));
+        }
+
 
 
 
