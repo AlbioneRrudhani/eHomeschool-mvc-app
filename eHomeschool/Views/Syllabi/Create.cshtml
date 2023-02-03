@@ -1,0 +1,54 @@
+﻿@model Syllabus
+
+
+
+@{
+    ViewData["Title"] = "Add a new syllabus";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add a New syllabus</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+         
+                    <div class="form-group">
+                        <label asp-for="Objective" class="control-label"></label>
+                        <input asp-for="Objective" class="form-control" />
+                        <span asp-validation-for="Objective" class="text-danger"></span>
+                    </div>
+                      <div class="form-group">
+                        <label asp-for="Outcome" class="control-label"></label>
+                        <input asp-for="Outcome" class="form-control" />
+                        <span asp-validation-for="Outcome" class="text-danger"></span>
+                    </div>
+                    
+                        <div class="form-group">
+                        <label asp-for="AssessmentMethods" class="control-label"></label>
+                        <textarea asp-for="AssessmentMethods" class="form-control"></textarea>
+                        <span asp-validation-for="AssessmentMethods" class="text-danger"></span>
+                        </div>
+                         <div class="form-group">
+                        <label asp-for="LearningMethods" class="control-label"></label>
+                        <textarea asp-for="LearningMethods" class="form-control"></textarea>
+                        <span asp-validation-for="LearningMethods" class="text-danger"></span>
+                        </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

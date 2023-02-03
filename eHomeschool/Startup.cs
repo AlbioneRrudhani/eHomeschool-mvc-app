@@ -42,6 +42,9 @@ namespace eHomeschool
 
             //Services configuration
             services.AddScoped<ILecturesService, LecturesService>();
+            services.AddScoped<IEducationalStagesService, EducationalStagesSevice>();
+            services.AddScoped<IInstructorInfoService, InstructorInfoService>();
+            services.AddScoped<ISyllabiService, SyllabiService>();
 
 
             services.AddControllersWithViews();
