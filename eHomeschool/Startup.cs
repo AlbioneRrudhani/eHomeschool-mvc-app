@@ -1,4 +1,5 @@
 using eHomeschool.Data;
+using eHomeschool.Data.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,6 +39,9 @@ namespace eHomeschool
                 // Use SQL Server and the connection string
                 options.UseSqlServer(connectionString);
             });
+
+            //Services configuration
+            services.AddScoped<ILecturesService, LecturesService>();
 
 
             services.AddControllersWithViews();
