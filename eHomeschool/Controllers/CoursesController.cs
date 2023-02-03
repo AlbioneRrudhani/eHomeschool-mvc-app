@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,11 +20,36 @@ namespace eHomeschool.Controllers
         {
             _service = service;
         }
+
+
+
+
+
         public async Task<IActionResult> Index()
         {
             var allCourses = await _service.GetAllAsync(n => n.EducationalStage);
             return View(allCourses);
         }
+
+
+
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allCourses = await _service.GetAllAsync(n => n.EducationalStage );
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+
+                var filteredResult = allCourses.Where(n => n.Title.ToLower().Contains(searchString.ToLower())  || n.Short_description.ToLower().Contains(searchString.ToLower())).ToList();
+
+                return View("Index", filteredResult);
+            }
+
+            return View(allCourses);
+        }
+
+
+
 
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
