@@ -92,8 +92,7 @@ namespace eHomeschool.Data.Cart
 
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems
-                .Where(n => n.ShoppingCartId == ShoppingCartId).Include(n => n.Course).ToList());
+            return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Include(n => n.Course).ToList());
         }
 
 
