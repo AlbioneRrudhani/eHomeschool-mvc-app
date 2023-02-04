@@ -2,6 +2,7 @@
 using eHomeschool.Data.Service;
 using eHomeschool.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace eHomeschool.Controllers
 {
@@ -28,6 +29,19 @@ namespace eHomeschool.Controllers
             };
 
             return View(response);
+        }
+
+
+
+        public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
+        {
+            var item = await _courseService.GetCourseByIdAsync(id);
+
+            if (item != null)
+            {
+                _shoppingCart.AddItemToCart(item);
+            }
+            return RedirectToAction(nameof(ShoppingCart));
         }
     }
 }
