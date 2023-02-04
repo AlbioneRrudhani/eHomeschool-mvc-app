@@ -48,6 +48,7 @@ namespace eHomeschool
             services.AddScoped<IInstructorInfoService, InstructorInfoService>();
             services.AddScoped<ISyllabiService, SyllabiService>();
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<IOrdersService, OrdersService>();
           
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
