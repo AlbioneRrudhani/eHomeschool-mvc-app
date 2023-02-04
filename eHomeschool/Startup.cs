@@ -1,7 +1,9 @@
 using eHomeschool.Data;
+using eHomeschool.Data.Cart;
 using eHomeschool.Data.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,6 +48,13 @@ namespace eHomeschool
             services.AddScoped<IInstructorInfoService, InstructorInfoService>();
             services.AddScoped<ISyllabiService, SyllabiService>();
             services.AddScoped<ICourseService, CourseService>();
+          
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+            services.AddSession();
+
+
 
 
             services.AddControllersWithViews();
@@ -68,6 +77,8 @@ namespace eHomeschool
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
