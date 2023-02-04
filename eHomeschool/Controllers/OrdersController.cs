@@ -43,5 +43,18 @@ namespace eHomeschool.Controllers
             }
             return RedirectToAction(nameof(ShoppingCart));
         }
+
+
+
+        public async Task<IActionResult> RemoveItemFromShoppingCart(int id)
+        {
+            var item = await _courseService.GetCourseByIdAsync(id);
+
+            if (item != null)
+            {
+                _shoppingCart.RemoveItemFromCart(item);
+            }
+            return RedirectToAction(nameof(ShoppingCart));
+        }
     }
 }
