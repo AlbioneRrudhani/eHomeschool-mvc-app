@@ -1,12 +1,15 @@
 ﻿using eHomeschool.Data;
 using eHomeschool.Data.Service;
 using eHomeschool.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace eHomeschool.Controllers
 {
+    [Authorize]
+
     public class EducationalStagesController : Controller
     {
         private readonly IEducationalStagesService _service;
@@ -15,12 +18,15 @@ namespace eHomeschool.Controllers
         {
             _service = service;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allEducationalStages = await _service.GetAllAsync();
             return View(allEducationalStages);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var educationalStagesDetails = await _service.GetByIdAsync(id);

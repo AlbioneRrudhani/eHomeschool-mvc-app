@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace eHomeschool.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly ICourseService _service;
@@ -24,7 +25,7 @@ namespace eHomeschool.Controllers
 
 
 
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allCourses = await _service.GetAllAsync(n => n.EducationalStage);
@@ -32,7 +33,7 @@ namespace eHomeschool.Controllers
         }
 
 
-
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var allCourses = await _service.GetAllAsync(n => n.EducationalStage );

@@ -1,12 +1,14 @@
 ﻿using eHomeschool.Data.Cart;
 using eHomeschool.Data.Service;
 using eHomeschool.Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace eHomeschool.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly ICourseService _courseService;
