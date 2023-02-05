@@ -4,8 +4,11 @@
 <div class="container my-5">
     <div class="row">
         @foreach (var item in Model)
-        {          
-           <a class="text-blue float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>         
+        {
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+           <a class="text-blue float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> 
+            }
             <div class="col-md-4 mb-3">
                 <div class="card h-100 shadow">                                                                                                         
                     <img src="@item.PictureUrl" class="card-img-top" height="200px" width="100%" alt="@item.Title">

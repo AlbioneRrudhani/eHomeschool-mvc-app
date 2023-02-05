@@ -23,17 +23,20 @@
                         <td>@item.Name</td>
                         <td>@item.Week</td>
                         <td>@item.Description</td>
-                        <td class="d-flex">
-                            <a class="btn btn-outline-primary mr-2" asp-action="Edit" asp-route-id="@item.Id">
-                                <i class="fas fa-edit"></i>Edit
-                            </a>
-                            <a class="btn btn-outline-info mr-2" asp-action="Details" asp-route-id="@item.Id">
-                                <i class="fas fa-info-circle"></i>Details
-                            </a>
-                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id">
-                                <i class="fas fa-trash-alt"></i>Delete
-                            </a>
-                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="d-flex">
+                                <a class="btn btn-outline-primary mr-2" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="fas fa-edit"></i>Edit
+                                </a>
+                                <a class="btn btn-outline-info mr-2" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="fas fa-info-circle"></i>Details
+                                </a>
+                                <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id">
+                                    <i class="fas fa-trash-alt"></i>Delete
+                                </a>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>
