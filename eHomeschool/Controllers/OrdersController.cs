@@ -1,5 +1,6 @@
 ﻿using eHomeschool.Data.Cart;
 using eHomeschool.Data.Service;
+using eHomeschool.Data.Static;
 using eHomeschool.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -85,5 +86,8 @@ namespace eHomeschool.Controllers
 
             return View("OrderCompleted");
         }
+
+      
     }
+
 }

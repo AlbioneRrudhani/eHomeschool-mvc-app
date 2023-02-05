@@ -1,5 +1,6 @@
 ﻿using eHomeschool.Data;
 using eHomeschool.Data.Service;
+using eHomeschool.Data.Static;
 using eHomeschool.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace eHomeschool.Controllers
 {
-    [Authorize]
-
+    [Authorize(Roles = UserRoles.Admin)]
     public class EducationalStagesController : Controller
     {
         private readonly IEducationalStagesService _service;

@@ -92,7 +92,10 @@ namespace eHomeschool.Controllers
             return RedirectToAction("Index", "Courses");
         }
 
-
+        public IActionResult AccessDenied(string ReturnUrl)
+        {
+            return View();
+        }
 
 
 
