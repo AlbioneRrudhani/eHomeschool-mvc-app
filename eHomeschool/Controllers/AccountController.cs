@@ -4,6 +4,7 @@ using eHomeschool.Data.ViewModels;
 using eHomeschool.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace eHomeschool.Controllers
@@ -21,6 +22,11 @@ namespace eHomeschool.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> Users()
+        {
+            var users = await _context.Users.ToListAsync();
+            return View(users);
+        }
 
         public IActionResult Login() => View(new LoginVM());
 
